@@ -1,0 +1,2 @@
+# WXT-LinkWhitelist
+ ホワイトリストに登録されたURLにのみ遷移できるようにするFirefox/Chrome拡張機能
