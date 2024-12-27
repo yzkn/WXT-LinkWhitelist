@@ -32,7 +32,23 @@ npm run dev:firefox
     "dev:edge": "wxt -b edge",
 ```
 
-- web-ext.config.ts
+## ブラウザのパスを設定
+
+以下のいずれかのファイルに追記（web-ext.config.tsが優先）
+
+- wxt.config.ts
+
+```ts
+  runner: {
+    binaries: {
+      chrome: 'C:/Program Files/chrome-win/chrome.exe',
+      edge: 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+      firefox: 'C:/Program Files/Mozilla Firefox/firefox.exe',
+    },
+  }
+```
+
+- web-ext.config.ts（ファイルを新規作成して追記）
 
 ```ts
 import { defineRunnerConfig } from 'wxt';
@@ -40,14 +56,16 @@ import { defineRunnerConfig } from 'wxt';
 export default defineRunnerConfig({
     binaries: {
         chrome: 'C:/Program Files/chrome-win/chrome.exe',
-        firefox: 'C:/Program Files/Mozilla Firefox/firefox.exe',
         edge: 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
+        firefox: 'C:/Program Files/Mozilla Firefox/firefox.exe',
     },
 });
 ```
 
 ```sh
+npm run dev
 npm run dev:edge
+npm run dev:firefox
 ```
 
 ---
