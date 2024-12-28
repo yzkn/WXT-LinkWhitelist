@@ -13,5 +13,6 @@ export default defineConfig({
       firefox: 'C:/Program Files/Mozilla Firefox/firefox.exe',
       edge: 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
     },
+    startUrls: ["https://google.com/"],
   }
 });
