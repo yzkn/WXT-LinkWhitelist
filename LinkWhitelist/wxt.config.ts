@@ -13,6 +13,9 @@ export default defineConfig({
       firefox: 'C:/Program Files/Mozilla Firefox/firefox.exe',
       edge: 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
     },
-    startUrls: ["https://google.com/"],
+    startUrls: [
+      // 'https://google.com/'
+      'https://qiita.com/kai_kou/items/180a91fd88dbbbd746f6'
+    ],
   }
 });

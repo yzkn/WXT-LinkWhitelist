@@ -1,13 +1,11 @@
 <script lang="ts" setup>
 import useStoredValue from "@/composables/useStoredValue";
 
-const { state: count, isLoading } = useStoredValue<number>("session:count", 0);
+const { state: whitelistUrls, isLoading } = useStoredValue<string>("sync:whitelistUrls", '');
 </script>
 
 <template>
-  <div>
-    <p>Count: {{ isLoading ? "Loading..." : count }}</p>
-    <button @click="count!++">+1</button>
-    <button @click="count!--">-1</button>
-  </div>
+    <div>
+        <textarea v-model="whitelistUrls" placeholder="Whitelist urls" rows="10"></textarea>
+    </div>
 </template>
