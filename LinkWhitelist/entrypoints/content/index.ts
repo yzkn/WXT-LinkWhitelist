@@ -1,3 +1,5 @@
+import { REGEX_WHITELIST_HREF_URLS, checkLinkTags } from './check';
+
 export default defineContentScript({
   matches: [
     '*://*.google.com/*',
@@ -19,12 +21,32 @@ export default defineContentScript({
 const handleUiMount = () => {
   console.log('handleUiMount()');
 
-  const observer = new MutationObserver(handleMutations);
-  observer.observe(document.body, { childList: true, subtree: true });
-};
+  // ページの表示が切り替わったタイミングを検知して置換処理を行う
+  const observer = new MutationObserver(async (mutations) => {
+    if (mutations.length > 10) {
+      console.log({ mutations });
 
-const handleMutations = async () => {
-  console.log('handleMutations()');
+      // checkLinkTags()での書き換えが検知されないようにするために一時停止
+      observer.disconnect();
 
-  // replaceHref();
+      const whitelist_urls = await storage.getItem<number>("sync:whitelistUrls");
+      const whitelistUrls = String(whitelist_urls).split('\n').filter(v => v);
+      const ALL_WHITELIST_HREF_URLS = REGEX_WHITELIST_HREF_URLS.concat(whitelistUrls);
+      checkLinkTags(ALL_WHITELIST_HREF_URLS);
+
+      // 検知再開
+      observer.observe(document, {
+        childList: true,
+        attributes: true,
+        characterData: true,
+        subtree: true,
+      });
+    }
+  });
+  observer.observe(document, {
+    childList: true,
+    attributes: true,
+    characterData: true,
+    subtree: true,
+  });
 };

@@ -2,8 +2,18 @@ import { storage } from "wxt/storage";
 import { defineBackground } from "wxt/sandbox";
 
 
-const defaultWhitelistUrls = `x.com
-`;
+const defaultWhitelistUrls = `https://ap.sansan.com/
+https://b.hatena.ne.jp
+https://github.com
+https://learn.microsoft.com
+https://nam.safelink.emails.azure.net
+https://open.spotify.com
+https://t.co
+https://teams.microsoft.com/
+https://twitter.com
+https://www.facebook.com
+https://www.youtube.com
+https://x.com`;
 
 
 export default defineBackground(() => {
